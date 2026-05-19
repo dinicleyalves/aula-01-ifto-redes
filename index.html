@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IFTO - Busca</title>
+
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      width:100%;
+      height:100vh;
+      background:#f3f3f3;
+      font-family:'Poppins', sans-serif;
+
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+
+      overflow:hidden;
+    }
+
+    /* Logo */
+    .logo{
+      width:420px;
+      max-width:90%;
+      margin-bottom:80px;
+    }
+
+    .logo img{
+      width:100%;
+      object-fit:contain;
+    }
+
+    /* Área de busca */
+    .search-container{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:25px;
+    }
+
+    /* Caixa de busca */
+    .search-box{
+      width:560px;
+      max-width:90%;
+      height:78px;
+
+      background:#ffffff;
+
+      border-radius:50px;
+
+      display:flex;
+      align-items:center;
+
+      padding:0 35px;
+
+      box-shadow:
+        0 10px 25px rgba(0,0,0,0.08),
+        inset 0 1px 1px rgba(255,255,255,0.8);
+
+      transition:0.3s ease;
+    }
+
+    .search-box:hover{
+      transform:translateY(-2px);
+      box-shadow:
+        0 14px 30px rgba(0,0,0,0.10);
+    }
+
+    .search-box input{
+      width:100%;
+      border:none;
+      outline:none;
+
+      background:transparent;
+
+      font-size:28px;
+      font-weight:300;
+      color:#333;
+    }
+
+    .search-box input::placeholder{
+      color:#444;
+      opacity:0.8;
+    }
+
+    /* Botão */
+    .btn-validar{
+      border:none;
+      outline:none;
+
+      padding:14px 45px;
+
+      border-radius:40px;
+
+      background:#3ca64a;
+      color:#fff;
+
+      font-size:18px;
+      font-weight:500;
+
+      cursor:pointer;
+
+      box-shadow:0 8px 20px rgba(0,0,0,0.12);
+
+      transition:0.3s ease;
+    }
+
+    .btn-validar:hover{
+      transform:translateY(-2px);
+      opacity:0.92;
+    }
+
+    /* E-mail */
+    .email{
+      margin-top:90px;
+
+      font-size:22px;
+      font-weight:300;
+      color:#222;
+    }
+
+    /* Responsivo */
+    @media(max-width:768px){
+
+      .logo{
+        width:300px;
+        margin-bottom:60px;
+      }
+
+      .search-box{
+        height:68px;
+        padding:0 25px;
+      }
+
+      .search-box input{
+        font-size:20px;
+      }
+
+      .btn-validar{
+        font-size:16px;
+        padding:12px 35px;
+      }
+
+      .email{
+        font-size:18px;
+        text-align:center;
+        padding:0 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Logo -->
+  <div class="logo">
+    <img src="img/logo-ifto.png" alt="Logo IFTO">
+  </div>
+
+  <!-- Área de busca -->
+  <div class="search-container">
+
+    <!-- Campo -->
+    <div class="search-box">
+      <input 
+        type="text" 
+        id="searchInput"
+        placeholder="Digite a palavra chave ..." 
+      />
+    </div>
+
+    <!-- Botão -->
+    <button class="btn-validar" onclick="validarPalavra()">
+      Validar
+    </button>
+
+  </div>
+
+  <!-- E-mail -->
+  <div class="email">
+    e-mail: dinicley.araguatins@ifto.edu.br
+  </div>
+
+  <script>
+
+    function validarPalavra(){
+
+      const input = document.getElementById("searchInput");
+
+      // Remove espaços e transforma em maiúsculo
+      const valor = input.value.trim().toUpperCase();
+
+      // Verifica a palavra
+      if(valor === "COMPROMISSO"){
+
+        // Redireciona
+        window.location.href = "https://github.com/dinicleyalves/aula-01-ifto";
+
+      } else {
+
+        alert("Palavra-chave inválida!");
+      }
+    }
+
+    // ENTER também funciona
+    document.getElementById("searchInput")
+      .addEventListener("keypress", function(event){
+
+        if(event.key === "Enter"){
+          validarPalavra();
+        }
+
+    });
+
+  </script>
+
+</body>
+</html>
