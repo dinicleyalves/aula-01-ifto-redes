@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IFTO - Redes de Computadores</title>
+  <title>IFTO - Busca</title>
 
   <!-- Fonte -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
+
     *{
       margin:0;
       padding:0;
@@ -20,7 +21,9 @@
     body{
       width:100%;
       height:100vh;
+
       background:#f3f3f3;
+
       font-family:'Poppins', sans-serif;
 
       display:flex;
@@ -35,6 +38,7 @@
     .logo{
       width:420px;
       max-width:90%;
+
       margin-bottom:80px;
     }
 
@@ -48,13 +52,15 @@
       display:flex;
       flex-direction:column;
       align-items:center;
+
       gap:25px;
     }
 
-    /* Caixa de busca */
+    /* Caixa */
     .search-box{
       width:560px;
       max-width:90%;
+
       height:78px;
 
       background:#ffffff;
@@ -75,12 +81,14 @@
 
     .search-box:hover{
       transform:translateY(-2px);
+
       box-shadow:
         0 14px 30px rgba(0,0,0,0.10);
     }
 
     .search-box input{
       width:100%;
+
       border:none;
       outline:none;
 
@@ -88,16 +96,18 @@
 
       font-size:28px;
       font-weight:300;
+
       color:#333;
     }
 
     .search-box input::placeholder{
-      color:#444;
+      color:#555;
       opacity:0.8;
     }
 
     /* Botão */
     .btn-validar{
+
       border:none;
       outline:none;
 
@@ -120,20 +130,66 @@
 
     .btn-validar:hover{
       transform:translateY(-2px);
+
       opacity:0.92;
     }
 
-   /* E-mail */
-.email{
-  margin-top:90px;
+    /* E-mail */
+    .email{
+      margin-top:90px;
 
-  font-size:22px;
-  font-weight:400;
+      font-size:22px;
+      font-weight:500;
 
-  color:#d62828; /* Vermelho elegante */
+      color:#c1121f;
 
-  letter-spacing:0.5px;
-}
+      text-shadow:0 1px 2px rgba(0,0,0,0.08);
+
+      transition:0.3s ease;
+    }
+
+    .email:hover{
+      opacity:0.85;
+    }
+
+    /* Mensagem personalizada */
+    .mensagem{
+      position:fixed;
+
+      top:30px;
+      right:30px;
+
+      background:#ffffff;
+
+      color:#c1121f;
+
+      padding:18px 28px;
+
+      border-left:6px solid #c1121f;
+
+      border-radius:14px;
+
+      box-shadow:0 10px 30px rgba(0,0,0,0.12);
+
+      font-size:17px;
+      font-weight:500;
+
+      opacity:0;
+      visibility:hidden;
+
+      transform:translateY(-20px);
+
+      transition:0.35s ease;
+
+      z-index:9999;
+    }
+
+    .mensagem.show{
+      opacity:1;
+      visibility:visible;
+
+      transform:translateY(0);
+    }
 
     /* Responsivo */
     @media(max-width:768px){
@@ -162,7 +218,14 @@
         text-align:center;
         padding:0 20px;
       }
+
+      .mensagem{
+        width:85%;
+        right:7.5%;
+        top:20px;
+      }
     }
+
   </style>
 </head>
 
@@ -181,7 +244,7 @@
       <input 
         type="text" 
         id="searchInput"
-        placeholder="Digite a palavra chave ..." 
+        placeholder="Digite a palavra chave ..."
       />
     </div>
 
@@ -197,24 +260,47 @@
     e-mail: dinicley.araguatins@ifto.edu.br
   </div>
 
+  <!-- Mensagem personalizada -->
+  <div id="mensagem" class="mensagem">
+    <span id="textoMensagem"></span>
+  </div>
+
   <script>
+
+    function mostrarMensagem(texto){
+
+      const mensagem = document.getElementById("mensagem");
+      const textoMensagem = document.getElementById("textoMensagem");
+
+      textoMensagem.innerHTML = texto;
+
+      mensagem.classList.add("show");
+
+      setTimeout(() => {
+        mensagem.classList.remove("show");
+      }, 3000);
+    }
 
     function validarPalavra(){
 
       const input = document.getElementById("searchInput");
 
-      // Remove espaços e transforma em maiúsculo
+      // Remove espaços e converte para maiúsculo
       const valor = input.value.trim().toUpperCase();
 
-      // Verifica a palavra
+      // Palavra correta
       if(valor === "COMPROMISSO"){
 
-        // Redireciona
-        window.location.href = "https://github.com/dinicleyalves/aula-01-ifto";
+        mostrarMensagem("✅ Palavra validada! Redirecionando...");
+
+        setTimeout(() => {
+          window.location.href = "https://github.com/dinicleyalves/aula-01-ifto-redes/tree/main";
+        }, 1200);
 
       } else {
 
-        alert("Palavra-chave inválida!");
+        mostrarMensagem("❌ Palavra-chave inválida!");
+
       }
     }
 
